@@ -29,12 +29,20 @@
  * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
  */
 #include <asf.h>
+#include <stdio.h>
+#include "uart.h"
+#include "motor.h"
 
 int main (void)
 {
 	/* Insert system clock initialization code here (sysclk_init()). */
-
 	board_init();
+	uart_init();
+	A1_16_Ini();
+	fdevopen(uart_send, uart_receive);
+	while(1){
+	
 
-	/* Insert application code here, after the board has been initialized. */
+
+	}
 }
