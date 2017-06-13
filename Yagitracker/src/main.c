@@ -29,9 +29,12 @@
  * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
  */
 #include <asf.h>
+#include <avr/io.h>
 #include <stdio.h>
 #include "uart.h"
 #include "motor.h"
+#include "adc.h"
+
 
 int main (void)
 {
@@ -41,8 +44,6 @@ int main (void)
 	A1_16_Ini();
 	fdevopen(uart_send, uart_receive);
 	while(1){
-	
-
-
+		A1_16_SetPosition(0x01,0x05,0,last_adc_value);
 	}
 }

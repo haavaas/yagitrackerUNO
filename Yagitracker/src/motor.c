@@ -5,14 +5,15 @@
  *  Author: user
  */ 
 
-#include "avr_io.h"
+#include <avr/io.h>
+#include <stdio.h>
 #include "motor.h"
 
-unsigned int checksum_1;
-unsigned int checksum_2;
+unsigned short checksum_1;
+unsigned short checksum_2;
 
-void A1_16_Ini(unsigned long baud){
-	DDRD &= ~(1<<2)			//set the RXD input
+void A1_16_Ini(void){
+	DDRD &= ~(1<<2);			//set the RXD input
 	PORTD |= (1<<2);		//pull-high the RXD pinout
 }
 
@@ -39,7 +40,7 @@ void A1_16_SetPosition(unsigned char _pID, unsigned char _CMD,  unsigned char _p
 	checksum_1 &= 0xfe;
 	checksum_2 = (~checksum_1)&0xfe;
 	
-	char *_header = [0xff, 0xff, 0x0c, _pID, _CMD, checksum_1, checksum_2];
+	char _header[7] = {0xff, 0xff, 0x0c, _pID, _CMD, checksum_1, checksum_2};
 	/*Serial1.write(0xff);
 	Serial1.write(0xff);
 	Serial1.write(0x0c);				

@@ -9,7 +9,7 @@
 #ifndef MOTOR_H_
 #define MOTOR_H_
 
-void A1_16_Ini(unsigned long baud);
+void A1_16_Ini(void);
 void A1_16_SetPosition(unsigned char _pID, unsigned char _CMD,  unsigned char _playtime, unsigned int _position);
 
 #define MAX_SERVOS                         20
