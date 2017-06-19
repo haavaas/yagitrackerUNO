@@ -12,8 +12,8 @@
 
 
 void uart_init(void);
-volatile unsigned char value;
 int uart_send(char value, FILE __stream);
+void uart_send_char(char value, int channel);
 char uart_receive(FILE __stream);
 
 

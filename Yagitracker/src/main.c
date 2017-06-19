@@ -31,6 +31,9 @@
 #include <asf.h>
 #include <avr/io.h>
 #include <stdio.h>
+#include <stdlib.h>
+#define F_CPU 16000000
+#include <util/delay.h>
 #include "uart.h"
 #include "motor.h"
 #include "adc.h"
@@ -41,9 +44,19 @@ int main (void)
 	/* Insert system clock initialization code here (sysclk_init()). */
 	board_init();
 	uart_init();
+	adc_init();
 	A1_16_Ini();
-	fdevopen(uart_send, uart_receive);
 	while(1){
+		//UDR0 = 'a';
+		//uart_send_char('a');
+		char pot_value[5];
+		itoa(last_adc_value, pot_value, 10);
+		for(int i = 0; i<5; i++){
+			uart_send_char(pot_value[i], 0);
+		}
+		uart_send_char('\n', 0);
+		ADCSRA |= (1<<ADSC);
+		_delay_ms(1000);
 		A1_16_SetPosition(0x01,0x05,0,last_adc_value);
 	}
 }

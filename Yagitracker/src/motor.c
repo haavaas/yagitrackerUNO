@@ -8,6 +8,7 @@
 #include <avr/io.h>
 #include <stdio.h>
 #include "motor.h"
+#include "uart.h"
 
 unsigned short checksum_1;
 unsigned short checksum_2;
@@ -51,6 +52,10 @@ void A1_16_SetPosition(unsigned char _pID, unsigned char _CMD,  unsigned char _p
 	
 	for(_i = 0;_i < 5;_i++) Serial1.write(_data[_i]);
 	*/
-	printf(_header);
-	printf(_data);
+	for(int i = 0; i < 7; i++){
+		uart_send_char(_header[i], 1);
+	}
+	for(int i = 0; i < 5; i++){
+		uart_send_char(_data[i], 1);
+	}
 }
