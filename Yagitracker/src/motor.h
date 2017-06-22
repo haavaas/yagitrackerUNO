@@ -11,6 +11,7 @@
 
 void A1_16_Ini(void);
 void A1_16_SetPosition(unsigned char _pID, unsigned char _CMD,  unsigned char _playtime, unsigned int _position);
+void A1_16_Basic(unsigned char _pID, unsigned char _CMD);
 
 #define MAX_SERVOS                         20
 #define BUFFER_SIZE                        64

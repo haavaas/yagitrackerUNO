@@ -56,7 +56,21 @@ int main (void)
 		}
 		uart_send_char('\n', 0);
 		ADCSRA |= (1<<ADSC);
-		_delay_ms(1000);
-		A1_16_SetPosition(0x01,0x05,0,last_adc_value);
+		_delay_ms(2000);
+		A1_16_Basic(1, CMD_STAT);
+		_delay_ms(2000);
+		A1_16_SetPosition(0x01,CMD_I_JOG,0,0x0000);
+		_delay_ms(2000);
+		A1_16_Basic(1, CMD_STAT);
+		_delay_ms(2000);
+		A1_16_SetPosition(0x01,CMD_I_JOG,0,0x03ff);
+		_delay_ms(2000);
+		A1_16_Basic(1, CMD_STAT);
+		_delay_ms(2000);
+		A1_16_SetPosition(0x01,CMD_I_JOG,0,0x0000);
+		_delay_ms(2000);
+		A1_16_Basic(1, CMD_STAT);
+		_delay_ms(2000);
+		A1_16_SetPosition(0x01,CMD_I_JOG,0,0x03ff);
 	}
 }

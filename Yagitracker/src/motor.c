@@ -59,3 +59,16 @@ void A1_16_SetPosition(unsigned char _pID, unsigned char _CMD,  unsigned char _p
 		uart_send_char(_data[i], 1);
 	}
 }
+
+
+void A1_16_Basic(unsigned char _pID, unsigned char _CMD){
+	checksum_1 = (7^_pID^_CMD)&0xfe;
+	checksum_2 = (~checksum_1)&0xfe;
+	uart_send_char(0xff, 1);          //header
+	uart_send_char(0xff, 1);          //header
+	uart_send_char(7, 1);				//package size
+	uart_send_char(_pID, 1);
+	uart_send_char(_CMD, 1);
+	uart_send_char(checksum_1, 1);
+	uart_send_char(checksum_2, 1);
+}
