@@ -8,10 +8,14 @@
 
 #ifndef MOTOR_H_
 #define MOTOR_H_
+#define DO_EEP_WRITE 0
 
-void A1_16_Ini(void);
+void A1_16_init(void);
 void A1_16_SetPosition(unsigned char _pID, unsigned char _CMD,  unsigned char _playtime, unsigned int _position);
 void A1_16_Basic(unsigned char _pID, unsigned char _CMD);
+void A1_16_WriteData(unsigned char _pID, unsigned char _CMD, unsigned char _addr_start, char _data_write);
+void A1_16_WriteData2(unsigned char _pID, unsigned char _CMD, unsigned char _addr_start, char BYTE_1, char BYTE_2);
+void A1_16_ReadData(unsigned char _pID, unsigned char _CMD, unsigned char _addr_start, char _data_length);
 
 #define MAX_SERVOS                         20
 #define BUFFER_SIZE                        64

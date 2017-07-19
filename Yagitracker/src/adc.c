@@ -17,7 +17,6 @@ int adc_init(void){
 	ADCSRA = 0b10101111; //Set adc enable, auto trigger enable, interrupt enable, divition factor 128
 	ADCSRB &= ~0b00000111; // Set free running auto trigger
 	ADMUX = 0b01000001; // Set 5V ref, left adjusted at ADC0 
-	sei();
 	ADCSRA |= (1<<ADSC);
 	return 1;
 }
